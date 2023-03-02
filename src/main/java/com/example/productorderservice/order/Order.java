@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "orders")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-class Order {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,4 +26,7 @@ class Order {
         Assert.isTrue(quantity > 0, "수량은 0보다 커야함");
     }
 
+    public int getTotalPrice() {
+        return product.getDiscountedPrice() * quantity;
+    }
 }
